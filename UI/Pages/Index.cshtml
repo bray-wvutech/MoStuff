@@ -1,0 +1,49 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section id="store-filter-section" class="mb-4">
+    <div class="row">
+        <form>
+            <input type="text" asp-for="Filter" placeholder="Search items" />
+            <input type="submit" value="Search" />
+        </form>
+    </div>
+</section>
+
+<section id="store-items">
+    <div class="row">
+        @foreach (var item in Model.StoreItems)
+        {
+            <div class="col-3 pb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8 fw-bold">
+                                @Html.DisplayFor(i => item.Name)
+                            </div>
+                            <div class="col-4 text-end fw-bold">
+                                @Html.DisplayFor(i => item.Price)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <img src="@UI.Utilities.PictureHelper.SafeItemPicture(item)" 
+                            class="card-img" />
+                    </div>
+
+                    <div class="card-body">
+                        @Html.DisplayFor(i => item.Description)
+                    </div>
+
+                    <div class="card-body">
+                        <a asp-page="StoreItem" asp-route-id="@item.Id" class="btn btn-primary w-100">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

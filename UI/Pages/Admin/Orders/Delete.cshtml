@@ -1,0 +1,71 @@
+﻿@page
+@model UI.Pages.Admin.Orders.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Order";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Order.UserEmail)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.UserEmail)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Order.CustomerName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.CustomerName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Order.ShippingAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.ShippingAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Order.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Order.Total)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.Total)
+        </dd>
+    </dl>
+</div>
+
+@foreach (var item in Model.Order.Items)
+{
+    <table class="table">
+        <thead>
+        <th>@Html.DisplayNameFor(i => item.Name)</th>
+        <th>@Html.DisplayNameFor(i => item.Price)</th>
+        <th>@Html.DisplayNameFor(i => item.Count)</th>
+        <th>@Html.DisplayNameFor(i => item.Subtotal)</th>
+        </thead>
+        <tbody>
+        <td>@Html.DisplayFor(i => item.Name)</td>
+        <td>@Html.DisplayFor(i => item.Price)</td>
+        <td>@Html.DisplayFor(i => item.Count)</td>
+        <td>@Html.DisplayFor(i => item.Subtotal)</td>
+        </tbody>
+    </table>
+}
+
+<div>
+    <form method="post">
+        <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+        <input type="hidden" asp-for="Order.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>

@@ -1,0 +1,55 @@
+﻿@page "{id:int}"
+@model RazorCrudUI.Pages.Items.EditModel
+
+@{
+    ViewData["Title"] = "Edit Item";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ItemModel.Id" />
+
+            <div class="form-group">
+                <label asp-for="ItemModel.Name" class="control-label"></label>
+                <input asp-for="ItemModel.Name" class="form-control" />
+                <span asp-validation-for="ItemModel.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ItemModel.Description" class="control-label"></label>
+                <input asp-for="ItemModel.Description" class="form-control" />
+                <span asp-validation-for="ItemModel.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ItemModel.Price" class="control-label"></label>
+                <input asp-for="ItemModel.Price" class="form-control" />
+                <span asp-validation-for="ItemModel.Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ItemModel.PictureUri" class="control-label"></label>                
+                <input type="file" name="ThisNameIsNotInTheItemModel" class="form-control" />
+                <input type="hidden" asp-for="ItemModel.PictureUri" />
+            </div>
+
+            <div class="form-group mt-2">
+                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-8">
+        <img src="@UI.Utilities.PictureHelper.SafeItemPicture(Model.ItemModel)" 
+            class="img-fluid" />
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

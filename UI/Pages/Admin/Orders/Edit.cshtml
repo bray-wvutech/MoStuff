@@ -1,0 +1,79 @@
+﻿@page
+@model UI.Pages.Admin.Orders.EditModel
+
+@{
+    ViewData["Title"] = "Edit Order";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderId" />
+
+            <div class="form-group">
+                <label asp-for="Order.UserEmail" class="control-label"></label>
+                <input asp-for="Order.UserEmail" readonly class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Order.CustomerName" class="control-label"></label>
+                <input asp-for="Order.CustomerName" readonly class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Order.ShippingAddress" class="control-label"></label>
+                <input asp-for="Order.ShippingAddress" readonly class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Order.Status" class="control-label"></label>
+                <select asp-for="Order.Status" class="form-control">
+                    <option value="Pending">Pending</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Returning">Returning</option>
+                    <option value="Returned">Returned</option>
+                </select>
+                <span asp-validation-for="Order.Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Order.Total" class="control-label"></label>
+                <input asp-for="Order.Total" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="mt-2">
+            @foreach (var item in Model.Order.Items)
+            {
+                <table class="table">
+                    <thead>
+                    <th>@Html.DisplayNameFor(i => item.Name)</th>
+                    <th>@Html.DisplayNameFor(i => item.Price)</th>
+                    <th>@Html.DisplayNameFor(i => item.Count)</th>
+                    <th>@Html.DisplayNameFor(i => item.Subtotal)</th>
+                    </thead>
+                    <tbody>
+                    <td>@Html.DisplayFor(i => item.Name)</td>
+                    <td>@Html.DisplayFor(i => item.Price)</td>
+                    <td>@Html.DisplayFor(i => item.Count)</td>
+                    <td>@Html.DisplayFor(i => item.Subtotal)</td>
+                    </tbody>
+                </table>
+            }
+        </div>
+
+        <div>
+            <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

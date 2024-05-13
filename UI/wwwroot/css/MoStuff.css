@@ -1,0 +1,24 @@
+﻿
+
+
+.mo-img-thumbnail {
+    height: 64px;
+    width: auto;
+}
+
+.mo-shopping-cart-icon {
+    float: left;
+    font-size: x-large;
+}
+
+.mo-shopping-cart-badge {
+    background-color: yellow;
+    border-radius: 50%;
+    color: black;
+    text-align: center;
+    float: right;
+    font-size: x-large;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 1rem;
+}

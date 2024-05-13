@@ -1,0 +1,60 @@
+﻿@page "{id:int}"
+@model UI.Pages.StoreItemModel
+@{
+    ViewData["Title"] = "Store Item";
+}
+
+<div class="row">
+
+    <div class="col-3"></div>
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <h1 class="col-8">
+                        @Html.DisplayFor(i => @Model.Item.Name)
+                    </h1>
+
+                    <h2 class="col-4 text-end">
+                        @Html.DisplayFor(i => @Model.Item.Price)
+                    </h2>
+                </div>
+            </div> <!-- card-header -->
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        @Html.DisplayFor(i => @Model.Item.Description)
+                    </div>
+
+                    <div class="col-6">
+                        <img src="@UI.Utilities.PictureHelper.SafeItemPicture(Model.Item)"
+                            class="card-img" />
+                    </div>
+                </div>
+            </div> <!-- card-body -->
+
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-6">
+                        <a asp-page="Index" class="btn btn-secondary">Back</a>
+                    </div>
+                    <div class="col-6 text-end">
+                        <form method="post">
+                            <input type="hidden" asp-for="Item.Id" />
+                            <input type="hidden" asp-for="Item.Name" />
+                            <input type="hidden" asp-for="Item.Description" />
+                            <input type="hidden" asp-for="Item.Price" />
+                            <input type="hidden" asp-for="Item.PictureUri" />
+                            <input type="submit" value="Add to Cart" 
+                                class="btn btn-primary" />
+                        </form>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- card-footer -->
+        </div> <!-- card -->
+    </div> <!-- col-6 -->
+
+    <div class="col-3"></div>
+</div>

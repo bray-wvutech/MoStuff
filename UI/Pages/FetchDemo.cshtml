@@ -1,0 +1,16 @@
+﻿@page
+@model UI.Pages.FetchDemoModel
+@{
+    ViewData["Title"] = "JavaScript Fetch Demo";
+}
+
+<div class="row mb-4">
+    <div class="col-1">
+        <button id="btnFetch" class="btn btn-outline-primary">Fetch</button>
+    </div>
+    <div class="col-11">
+        <div id="divFetch">Loading...</div>
+    </div>
+</div>
+
+<script src="~/js/fetch.js"></script>

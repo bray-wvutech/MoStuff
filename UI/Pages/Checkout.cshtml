@@ -1,0 +1,83 @@
+﻿@page
+@model UI.Pages.CheckoutModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<form method="post">
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h3>@ViewData["Title"]</h3>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <section id="mo-checkout-customer-section" class="card p-3 bg-warning">
+                            <div class="form-group">
+                                <label asp-for="OrderModel.CustomerName" class="control-label fw-bold p-1"></label>
+                                <input asp-for="OrderModel.CustomerName" class="form-control" />
+                                <span asp-validation-for="OrderModel.CustomerName" 
+                                    class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="OrderModel.ShippingAddress" class="control-label fw-bold p-1"></label>
+                                <textarea rows="4" asp-for="OrderModel.ShippingAddress" class="form-control">
+                                </textarea>
+                                <span asp-validation-for="OrderModel.ShippingAddress" 
+                                    class="text-danger"></span>
+                            </div>
+                            </section> <!-- customer info -->
+                    </div> <!-- col-4 -->
+
+                    <section id="mo-checkout-summary-section" class="col-8">
+                        <table class="table table-borderless">
+                            <thead>
+                                <th>@Html.DisplayNameFor(m => Model.OrderModel.Items[0].Name)</th>
+                                <th class="text-end">@Html.DisplayNameFor(m => Model.OrderModel.Items[0].Price)</th>
+                                <th class="text-end">@Html.DisplayNameFor(m => Model.OrderModel.Items[0].Count)</th>
+                                <th class="text-end">@Html.DisplayNameFor(m => Model.OrderModel.Items[0].Subtotal)</th>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderModel.Items)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(m => item.Name)</td>
+                                        <td class="text-end">@Html.DisplayFor(m => item.Price)</td>
+                                        <td class="text-end">@Html.DisplayFor(m => item.Count)</td>
+                                        <td class="text-end">@Html.DisplayFor(m => item.Subtotal)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot class="fw-bold">
+                                <tr>
+                                    <td></td> <!-- Name -->
+                                    <td></td> <!-- Price -->
+                                    <td class="text-end">Total:</td> <!-- Count -->
+                                    <td class="text-end">@Html.DisplayFor(m => Model.OrderModel.Total)</td> <!-- Subtotal -->
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-6">
+                        <a asp-page="ShoppingCart" class="btn btn-secondary">
+                            Back
+                        </a>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="submit" class="btn btn-primary">
+                            Pay Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
